@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Item from './Item';
 import EditItem from './EditItem';
+import {v4 as uuidv4} from 'uuid';
+
  
 export default function Liste() {
   const [listeImage, setListeImage] = useState([
@@ -23,7 +25,22 @@ export default function Liste() {
   function handleImageClick (image) {
     setCurrentImage(image);
     setDisplayEditionForm(true); 
+  } 
+
+
+  function handleEditSubmit(updatedUrl) {
+    const newListe = listeImage.map(image => {
+      if (image.id === currentImage.id) {
+        return { ...image, url: updatedUrl };
+      }
+      return image; 
+    });
+  
+    setListeImage(newListe);
+    setDisplayEditionForm(false);
+    setCurrentImage(null);
   }
+  
 
   return (
     <div className="container bg-light">
@@ -31,15 +48,15 @@ export default function Liste() {
       <div className="row">
       {listeImage.map((image) => {
           return (
-               <div className='col-12 col-md-4' key={image.id}>
-                    <Item image={image} key={image.id}  handleClick={handleImageClick}   />
-               </div>
+              <div className='col-12 col-md-4' key={image.id}>
+                  <Item image={image} key={image.id}  handleClick={handleImageClick}   />
+              </div>
           );
         })}
       </div>
       <div className="row mt-5 mx-4">
         {displayEditionForm && 
-          <EditItem image={currentImage} />
+          <EditItem image={currentImage} handleEditSubmit={handleEditSubmit} />
         }
       </div>
     </div>
