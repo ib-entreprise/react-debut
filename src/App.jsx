@@ -9,7 +9,7 @@ function App() {
     <>
     <div className="container mt-5 text-center">
       <Liste />
-      <div className="">
+      <div className="row">
         <button className="btn btn-primary m-2" onClick={()=>{setShowImage(true)}}>Afficher</button>
         <button className="btn btn-secondary m-2" onClick={() => {setShowImage(false)} } >Disparaître</button>
       </div>

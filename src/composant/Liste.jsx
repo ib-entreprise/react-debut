@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import Item from './Item';
+ 
 export default function Liste() {
   const [listeImage, setListeImage] = useState([
     {
@@ -20,11 +21,11 @@ export default function Liste() {
     <div className="container">
       <h2>Liste des images</h2>
       <div className="row">
-        {listeImage.map((image) => {
+      {listeImage.map((image) => {
           return (
-            <div className="col-4 gap-3" key={image.id}>
-              <img src={image.url}  height="300"   />
-            </div>
+               <div className='col-4' key={image.id}>
+                    <Item image={image} key={image.id}/>
+               </div>
           );
         })}
       </div>
