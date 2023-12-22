@@ -1,7 +1,5 @@
-import React from 'react';
-
-export default function Item({image}) {
+export default function Item({image,handleClick}) {
   return (
-      <img src={image.url} alt={image.url}  height="300"/>
+      <img src={image.url} alt={image.url}  height="300" onClick={() => handleClick(image)}/ >
   );
 }
